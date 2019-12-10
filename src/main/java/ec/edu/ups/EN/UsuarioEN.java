@@ -1,7 +1,7 @@
 package ec.edu.ups.EN;
 
 import java.util.List;
-
+//chita
 public class UsuarioEN {
 	private int codigoU;
 	private String nombreU;
