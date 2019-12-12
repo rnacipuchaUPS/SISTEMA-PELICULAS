@@ -1,12 +1,24 @@
 package ec.edu.ups.EN;
 
-import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+@Entity
 public class VotoEN {
+	@Id
+	@GeneratedValue
 	private int codigoV;
 	private int puntuacionV;
-	private List<UsuarioEN> usuarioList;
-	private List<PeliculaEN> peliculaList;
+	@OneToOne
+	@JoinColumn(name = "codigoV")
+	private UsuarioEN usuario;
+	@OneToOne
+	@JoinColumn(name = "codigoV")
+	private PeliculaEN pelicula;
 	public int getCodigoV() {
 		return codigoV;
 	}
@@ -19,25 +31,22 @@ public class VotoEN {
 	public void setPuntuacionV(int puntuacionV) {
 		this.puntuacionV = puntuacionV;
 	}
-	public List<UsuarioEN> getUsuarioList() {
-		return usuarioList;
+	public UsuarioEN getUsuario() {
+		return usuario;
 	}
-	public void setUsuarioList(List<UsuarioEN> usuarioList) {
-		this.usuarioList = usuarioList;
+	public void setUsuario(UsuarioEN usuario) {
+		this.usuario = usuario;
 	}
-	public List<PeliculaEN> getPeliculaList() {
-		return peliculaList;
+	public PeliculaEN getPelicula() {
+		return pelicula;
 	}
-	public void setPeliculaList(List<PeliculaEN> peliculaList) {
-		this.peliculaList = peliculaList;
+	public void setPelicula(PeliculaEN pelicula) {
+		this.pelicula = pelicula;
 	}
 	@Override
 	public String toString() {
-		return "VotoEN [codigoV=" + codigoV + ", puntuacionV=" + puntuacionV + ", usuarioList=" + usuarioList
-				+ ", peliculaList=" + peliculaList + "]";
+		return "VotoEN [codigoV=" + codigoV + ", puntuacionV=" + puntuacionV + ", usuario=" + usuario + ", pelicula="
+				+ pelicula + "]";
 	}
 	
-	
-	
-
 }

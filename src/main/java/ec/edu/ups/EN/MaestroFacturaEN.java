@@ -2,15 +2,30 @@ package ec.edu.ups.EN;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+@Entity
 public class MaestroFacturaEN {
+	
+	@Id
+	@GeneratedValue
 	private int codigoM;
-	private String fechaM;
-	private String direccionM;
-	private String subtotalM;
-	private Double ivaM;
-	private Double descuentoM;
-	private Double totalM;
+	private String fecha;
+	private String direccion;
+	private String subtotal;
+	private Double iva;
+	private Double precioExtra;
+	private Double descuento;
+	private Double total;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "codigoM")
 	private List<UsuarioEN> usuarioList;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "codigoM")
 	private List<DetalleFacturaEN> detalleList;
 	public int getCodigoM() {
 		return codigoM;
@@ -18,41 +33,47 @@ public class MaestroFacturaEN {
 	public void setCodigoM(int codigoM) {
 		this.codigoM = codigoM;
 	}
-	public String getFechaM() {
-		return fechaM;
+	public String getFecha() {
+		return fecha;
 	}
-	public void setFechaM(String fechaM) {
-		this.fechaM = fechaM;
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
 	}
-	public String getDireccionM() {
-		return direccionM;
+	public String getDireccion() {
+		return direccion;
 	}
-	public void setDireccionM(String direccionM) {
-		this.direccionM = direccionM;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
-	public String getSubtotalM() {
-		return subtotalM;
+	public String getSubtotal() {
+		return subtotal;
 	}
-	public void setSubtotalM(String subtotalM) {
-		this.subtotalM = subtotalM;
+	public void setSubtotal(String subtotal) {
+		this.subtotal = subtotal;
 	}
-	public Double getIvaM() {
-		return ivaM;
+	public Double getIva() {
+		return iva;
 	}
-	public void setIvaM(Double ivaM) {
-		this.ivaM = ivaM;
+	public void setIva(Double iva) {
+		this.iva = iva;
 	}
-	public Double getDescuentoM() {
-		return descuentoM;
+	public Double getPrecioExtra() {
+		return precioExtra;
 	}
-	public void setDescuentoM(Double descuentoM) {
-		this.descuentoM = descuentoM;
+	public void setPrecioExtra(Double precioExtra) {
+		this.precioExtra = precioExtra;
 	}
-	public Double getTotalM() {
-		return totalM;
+	public Double getDescuento() {
+		return descuento;
 	}
-	public void setTotalM(Double totalM) {
-		this.totalM = totalM;
+	public void setDescuento(Double descuento) {
+		this.descuento = descuento;
+	}
+	public Double getTotal() {
+		return total;
+	}
+	public void setTotal(Double total) {
+		this.total = total;
 	}
 	public List<UsuarioEN> getUsuarioList() {
 		return usuarioList;
@@ -68,12 +89,10 @@ public class MaestroFacturaEN {
 	}
 	@Override
 	public String toString() {
-		return "MaestroFacturaEN [codigoM=" + codigoM + ", fechaM=" + fechaM + ", direccionM=" + direccionM
-				+ ", subtotalM=" + subtotalM + ", ivaM=" + ivaM + ", descuentoM=" + descuentoM + ", totalM=" + totalM
-				+ ", usuarioList=" + usuarioList + ", detalleList=" + detalleList + "]";
+		return "MaestroFacturaEN [codigoM=" + codigoM + ", fecha=" + fecha + ", direccion=" + direccion + ", subtotal="
+				+ subtotal + ", iva=" + iva + ", precioExtra=" + precioExtra + ", descuento=" + descuento + ", total="
+				+ total + ", usuarioList=" + usuarioList + ", detalleList=" + detalleList + "]";
 	}
 	
 	
-	
-
 }

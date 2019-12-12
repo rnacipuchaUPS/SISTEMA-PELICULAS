@@ -1,49 +1,55 @@
 package ec.edu.ups.EN;
 
-import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+@Entity
 public class DetalleFacturaEN {
+	
+	@Id
+	@GeneratedValue
 	private int codigoD;
-	private int cantidadD;
-	private Double subtotalD;
-	private String descripcionD;
-	private List<PeliculaEN> peliculasList;
+	private int cantidad;
+	private Double subtotal;
+	private String descripcion;
+	@OneToOne
+	private PeliculaEN pelicula;
 	public int getCodigoD() {
 		return codigoD;
 	}
 	public void setCodigoD(int codigoD) {
 		this.codigoD = codigoD;
 	}
-	public int getCantidadD() {
-		return cantidadD;
+	public int getCantidad() {
+		return cantidad;
 	}
-	public void setCantidadD(int cantidadD) {
-		this.cantidadD = cantidadD;
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
-	public Double getSubtotalD() {
-		return subtotalD;
+	public String getDescripcion() {
+		return descripcion;
 	}
-	public void setSubtotalD(Double subtotalD) {
-		this.subtotalD = subtotalD;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
-	public String getDescripcionD() {
-		return descripcionD;
+	public PeliculaEN getPelicula() {
+		return pelicula;
 	}
-	public void setDescripcionD(String descripcionD) {
-		this.descripcionD = descripcionD;
+	public void setPelicula(PeliculaEN pelicula) {
+		this.pelicula = pelicula;
 	}
-	public List<PeliculaEN> getPeliculasList() {
-		return peliculasList;
+	public Double getSubtotal() {
+		return subtotal;
 	}
-	public void setPeliculasList(List<PeliculaEN> peliculasList) {
-		this.peliculasList = peliculasList;
+	public void setSubtotal(Double subtotal) {
+		this.subtotal = subtotal;
 	}
 	@Override
 	public String toString() {
-		return "DetalleFacturaEN [codigoD=" + codigoD + ", cantidadD=" + cantidadD + ", subtotalD=" + subtotalD
-				+ ", descripcionD=" + descripcionD + ", peliculasList=" + peliculasList + "]";
+		return "DetalleFacturaEN [codigoD=" + codigoD + ", cantidad=" + cantidad + ", subtotal=" + subtotal
+				+ ", descripcion=" + descripcion + ", pelicula=" + pelicula + "]";
 	}
 	
-	
-
 }

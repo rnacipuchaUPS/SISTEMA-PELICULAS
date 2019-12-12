@@ -1,32 +1,61 @@
 package ec.edu.ups.EN;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class TarjetaEN {
+	@Id
+	@GeneratedValue
 	private int codigoT;
-	private String numeroTargetaT;
-	private String claveT;
+	private String numeroTargeta;
+	private String clave;
+	
+	@ManyToOne
+	@JoinColumn(name="codigo-Tar")
+	//@JsonIgnore
+	private UsuarioEN usuario;
+
 	public int getCodigoT() {
 		return codigoT;
 	}
+
 	public void setCodigoT(int codigoT) {
 		this.codigoT = codigoT;
 	}
-	public String getNumeroTargetaT() {
-		return numeroTargetaT;
+
+	public String getNumeroTargeta() {
+		return numeroTargeta;
 	}
-	public void setNumeroTargetaT(String numeroTargetaT) {
-		this.numeroTargetaT = numeroTargetaT;
+
+	public void setNumeroTargeta(String numeroTargeta) {
+		this.numeroTargeta = numeroTargeta;
 	}
-	public String getClaveT() {
-		return claveT;
+
+	public String getClave() {
+		return clave;
 	}
-	public void setClaveT(String claveT) {
-		this.claveT = claveT;
+
+	public void setClave(String clave) {
+		this.clave = clave;
 	}
+
+	public UsuarioEN getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(UsuarioEN usuario) {
+		this.usuario = usuario;
+	}
+
 	@Override
 	public String toString() {
-		return "TarjetaEN [codigoT=" + codigoT + ", numeroTargetaT=" + numeroTargetaT + ", claveT=" + claveT + "]";
+		return "TarjetaEN [codigoT=" + codigoT + ", numeroTargeta=" + numeroTargeta + ", clave=" + clave + ", usuario="
+				+ usuario + "]";
 	}
 	
 	
-
 }
