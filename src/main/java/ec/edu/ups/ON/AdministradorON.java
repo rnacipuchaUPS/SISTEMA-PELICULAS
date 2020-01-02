@@ -4,16 +4,14 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import ec.edu.DAO.AdministradorDAO;
-import ec.edu.DAO.CategoriaDAO;
 import ec.edu.ups.EN.AdministradorEN;
 @Stateless
 public class AdministradorON {
 	@Inject
 	private AdministradorDAO adao;
-	@Inject 
-	private CategoriaDAO cdao;
 	
 	public void guardar(AdministradorEN u) {
+		
 		adao.guardar(u);
 	}
 	
@@ -25,7 +23,9 @@ public class AdministradorON {
 		adao.update(u);
 	}
 	
-	public boolean login(String usuario, String clave) {
+	
+	
+	public AdministradorEN login(String usuario, String clave) {
 		return adao.login(usuario, clave);
 	}
 }

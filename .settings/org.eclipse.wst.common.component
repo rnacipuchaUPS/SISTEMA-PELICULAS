@@ -4,6 +4,9 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="primefaces-7.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/ProyectoPeliculas/primefaces-7.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="ProyectoPeliculas"/>
         <property name="java-output-path" value="/ProyectoPeliculas/target/classes"/>
     </wb-module>

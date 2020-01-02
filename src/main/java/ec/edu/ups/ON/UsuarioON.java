@@ -7,7 +7,6 @@ import javax.inject.Inject;
 
 import ec.edu.DAO.TarjetaDAO;
 import ec.edu.DAO.UsuarioDAO;
-import ec.edu.ups.EN.PeliculaEN;
 import ec.edu.ups.EN.UsuarioEN;
 
 @Stateless

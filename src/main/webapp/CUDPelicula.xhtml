@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"> 
+
+<ui:composition template="tables.xhtml">
+	<ui:define name="pelIngreso">
+		<h:form id="frmIngreso">
+			<h:panelGrid columns="2">
+				<h:outputText value="Titulo" />				
+				<h:inputText value="#{peliculaController.pelicula.titulo}" onkeyup="#{peliculaController.keyUptitulo()}"/>
+				<h:outputText value="Género" />
+				<h:inputText value="#{peliculaController.pelicula.genero}" />
+				<h:outputText value="Descripcion" />
+				<h:inputText value="#{peliculaController.pelicula.descripcion}" />
+				<h:outputText value="Stock" />
+				<h:inputText value="#{peliculaController.pelicula.cantidad}" />
+				<h:outputText value="Precio" />
+				<h:inputText value="#{peliculaController.pelicula.valor}" />
+				<p:dataTable value="#{peliculaController.clist}" var="cl" >
+					<p:column headerText="Categoria">
+						<p:selectOneMenu value="#{cl.descripcion}" id="caract">
+							<f:selectItem itemLabel="Digital" itemValue="Digital"/>
+							<f:selectItem itemLabel="Fisico" itemValue="Fisico"/>
+						</p:selectOneMenu>
+					</p:column>
+				</p:dataTable>
+				<h:commandButton action="#{peliculaController.addCategoria()}" value="Add Categoría" />
+			</h:panelGrid>
+			<h:commandButton action="#{peliculaController.guardar()}" value="Guardar cambios" />
+		</h:form>
+	</ui:define>
+	<ui:define name="pelListado">
+	hola</ui:define>
+</ui:composition>
+</html>

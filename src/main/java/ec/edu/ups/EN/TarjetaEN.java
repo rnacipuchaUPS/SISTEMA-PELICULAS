@@ -3,9 +3,6 @@ package ec.edu.ups.EN;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 @Entity
 public class TarjetaEN {
 	@Id
@@ -14,11 +11,6 @@ public class TarjetaEN {
 	private String numeroTargeta;
 	private String clave;
 	
-	@ManyToOne
-	@JoinColumn(name="codigo-Tar")
-	//@JsonIgnore
-	private UsuarioEN usuario;
-
 	public int getCodigoT() {
 		return codigoT;
 	}
@@ -43,19 +35,11 @@ public class TarjetaEN {
 		this.clave = clave;
 	}
 
-	public UsuarioEN getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(UsuarioEN usuario) {
-		this.usuario = usuario;
-	}
-
 	@Override
 	public String toString() {
-		return "TarjetaEN [codigoT=" + codigoT + ", numeroTargeta=" + numeroTargeta + ", clave=" + clave + ", usuario="
-				+ usuario + "]";
+		return "TarjetaEN [codigoT=" + codigoT + ", numeroTargeta=" + numeroTargeta + ", clave=" + clave + "]";
 	}
-	
+
+		
 	
 }

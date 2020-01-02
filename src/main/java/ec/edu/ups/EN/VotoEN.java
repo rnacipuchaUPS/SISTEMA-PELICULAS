@@ -1,7 +1,9 @@
 package ec.edu.ups.EN;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -13,10 +15,12 @@ public class VotoEN {
 	@GeneratedValue
 	private int codigoV;
 	private int puntuacionV;
-	@OneToOne
+	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigoV")
 	private UsuarioEN usuario;
-	@OneToOne
+	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigoV")
 	private PeliculaEN pelicula;
 	public int getCodigoV() {

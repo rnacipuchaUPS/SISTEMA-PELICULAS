@@ -3,37 +3,30 @@ package ec.edu.ups.EN;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 public class PeliculaEN {
 	@Id
-	@GeneratedValue
-	@NotNull
+	@GeneratedValue	
 	private int codigoP;
 	@NotNull
-	@Size(max = 50)
 	private String titulo;
 	@NotNull
-	@Size(max = 100)
 	private String descripcion;
 	@NotNull
-	@Size(max = 50)
-	private String genero;
-	@NotNull
-	@Size(max = 10)
-	private Double valor;
-	@NotNull
-	@Size(max = 5)
+	private String genero;	
+	private Double valor;	
 	private int cantidad;
-	@OneToMany
-	@JoinColumn(name = "codigo-Cate")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "codigoP")
 	private List<CategoriaEN> categoriaList;
 
 	public int getCodigoP() {

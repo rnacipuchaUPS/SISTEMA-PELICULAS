@@ -3,10 +3,8 @@ package ec.edu.ups.Controller;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import ec.edu.ups.EN.CategoriaEN;
@@ -14,6 +12,7 @@ import ec.edu.ups.EN.PeliculaEN;
 import ec.edu.ups.ON.PeliculaON;
 
 @ManagedBean
+@ViewScoped
 
 public class PeliculaController {
 	@Inject
@@ -23,9 +22,8 @@ public class PeliculaController {
 	private CategoriaEN categoria;
 	private int id;
 	private List<PeliculaEN> plist;
-	boolean editing ;
-	@Inject
-	private FacesContext facesContext;
+	
+	private List <CategoriaEN>clist;
 	
 	@PostConstruct
 	public void init() {
@@ -34,17 +32,9 @@ public class PeliculaController {
 	//	editing = false;
 	}
 	
-	public void loadData() {
-		if (id == 0)
-			return;
-		try {
-			pelicula = pon.leer(id);
-			editing = true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), "Error");
-			facesContext.addMessage(null, m);
-		}
+	public String keyUptitulo() {
+		System.out.println("llega");
+		return null;
 	}
 
 	public String guardar() {
@@ -101,20 +91,22 @@ public class PeliculaController {
 		this.plist = plist;
 	}
 
-	public boolean isEditing() {
-		return editing;
-	}
-
-	public void setEditing(boolean editing) {
-		this.editing = editing;
-	}
-
 	public CategoriaEN getCategoria() {
 		return categoria;
 	}
 
 	public void setCategoria(CategoriaEN categoria) {
 		this.categoria = categoria;
+	}
+
+
+	public List<CategoriaEN> getClist() {
+		return clist;
+	}
+
+
+	public void setClist(List<CategoriaEN> clist) {
+		this.clist = clist;
 	}
 	
 		

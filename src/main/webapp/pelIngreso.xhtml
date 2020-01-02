@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">     
+      
+      <h:head>
+      <style type="text/css">
+     .value {
+        font-weight: bold;
+    }
+     
+    .ui-carousel {
+        margin-bottom: 20px;
+    }
+</style>
+ </h:head> 
+
+	<ui:composition template="index.xhtml">
+	<ui:define name="contenido">	
+		<p:carousel value="" headerText="Responsive" var="car" itemStyle="text-align:center" responsive="true">
+        <p:panelGrid columns="2" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
+            <f:facet name="header">
+                js
+            </f:facet>
+ 
+            <h:outputText value="Id:" />
+            <h:outputText value="" />
+ 
+            <h:outputText value="Year" />
+            <h:outputText value="" />
+ 
+            <h:outputText value="Color:" />
+            <h:outputText value="" />
+ 
+            <h:outputText value="Price" />
+            <h:outputText value="" />
+        </p:panelGrid>
+ 
+        <f:facet name="footer">
+                In total there are cars.
+        </f:facet>
+    </p:carousel>
+	</ui:define>
+	</ui:composition>
+</html>

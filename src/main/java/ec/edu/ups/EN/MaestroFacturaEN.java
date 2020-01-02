@@ -2,6 +2,7 @@ package ec.edu.ups.EN;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,10 +22,10 @@ public class MaestroFacturaEN {
 	private Double precioExtra;
 	private Double descuento;
 	private Double total;
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigoM")
 	private List<UsuarioEN> usuarioList;
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigoM")
 	private List<DetalleFacturaEN> detalleList;
 	public int getCodigoM() {

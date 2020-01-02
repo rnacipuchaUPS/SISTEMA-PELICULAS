@@ -5,34 +5,29 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 @Entity
 public class UsuarioEN {
 	@Id
 	@GeneratedValue
 	private int encodigo;
 	@NotNull
-	@Size(max = 70)
 	private String nombre;
 	@NotNull
-	@Size(max = 70)
 	private String apellido;
 	@NotNull
-	@Size(max = 20)
 	private String genero;
 	@NotNull
-	@Size(max = 8)
 	private String usuario;
 	@NotNull
-	@Size(min = 8, max = 20)
 	private String clave;
-	@OneToMany(cascade= {CascadeType.ALL})
-	@JoinColumn(name = "codigo-Tar")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "encodigo")
 	private List<TarjetaEN> tarjetaList;
 	public int getEncodigo() {
 		return encodigo;
