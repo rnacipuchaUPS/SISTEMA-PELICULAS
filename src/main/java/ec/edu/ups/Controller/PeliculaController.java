@@ -39,12 +39,14 @@ public class PeliculaController {
 
 	public String guardar() {
 		System.out.println("el------------------------------ "+ pelicula);
-		//pon.guardar(pelicula);
+		pon.guardar(pelicula);
+		init();
 		return null;
 	}
 	
 	public String addCategoria() {
-		pelicula.addCategoria(new CategoriaEN());
+		pelicula.addCategoria(categoria);
+		categoria = new CategoriaEN();
 		return null;
 	}
 	

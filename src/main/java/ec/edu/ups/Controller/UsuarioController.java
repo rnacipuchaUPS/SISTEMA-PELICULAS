@@ -19,6 +19,9 @@ public class UsuarioController {
 	private UsuarioEN usuario;
 	private int id;
 	private List<UsuarioEN> listUsu;
+	private List<TarjetaEN> tarje;
+	private TarjetaEN tarjeta;
+	
 	
 	@PostConstruct
 	public void init() {
@@ -45,7 +48,8 @@ public class UsuarioController {
 	}
 	
 	public String addTarjeta() {
-		usuario.addTarjeta(new TarjetaEN());
+		usuario.addTarjeta(tarjeta);
+		tarjeta = new TarjetaEN();
 		return null;
 	}
 	
@@ -72,6 +76,22 @@ public class UsuarioController {
 
 	public void setListUsu(List<UsuarioEN> listUsu) {
 		this.listUsu = listUsu;
+	}
+
+	public List<TarjetaEN> getTarje() {
+		return tarje;
+	}
+
+	public void setTarje(List<TarjetaEN> tarje) {
+		this.tarje = tarje;
+	}
+
+	public TarjetaEN getTarjeta() {
+		return tarjeta;
+	}
+
+	public void setTarjeta(TarjetaEN tarjeta) {
+		this.tarjeta = tarjeta;
 	}
 	
 	

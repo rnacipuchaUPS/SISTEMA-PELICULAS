@@ -42,7 +42,7 @@ public class AdministradorController {
 		System.out.println("llega "+ usu+" - "+ clave);
 		//if(aon.login(usu, clave)!=null) {	
 			System.out.println("entra");
-			return "index.xhtml";
+			return "InicioGen.xhtml";
 		//}else {
 			//init();
 			
