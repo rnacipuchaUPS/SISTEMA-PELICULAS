@@ -26,15 +26,7 @@
 
 	<!-- Custom styles for this template-->
 	<link href="start/css/sb-admin.css" rel="stylesheet" />
-	<style type="text/css">
-.value {
-	font-weight: bold;
-}
 
-.ui-carousel {
-	margin-bottom: 20px;
-}
-</style>
 </h:head>
 
 <body id="page-top">
@@ -53,7 +45,8 @@
 				class="nav-link dropdown-toggle" href="#" id="userDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> <i class="fas fa-user-circle fa-fw">
-						L Ch.</i>
+						<p:outputLabel>#{administradorController.admi.nombre}</p:outputLabel>
+				</i>
 			</a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="userDropdown">
@@ -75,122 +68,119 @@
 
 				<!-- Breadcrumbs-->
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#">Películas</a></li>
+					<li class="breadcrumb-item"><a>Películas</a></li>
 				</ol>
 
-				<!-- Poner las peliculas-->
-				<div class="row">
+				<div class="card mb-3">
+					<div class="card-header">
+						<i class="fas fa-chart-area"></i> Registro o Ingreso de Películas.
+					</div>
+					<h:form id="frmid">
+						<div class="card-header">Registro de Películas</div>
+						<div class="card-body">
+							<p:fieldset
+								style="font-size: 12px; margin-right: 0.5em; padding-top: 1em;
+                                border: 1px solid lightgray; font-weight: bold; text-align: right; ">
 
-				
-				<h:form>
-									<div class="form-group">
-										<div class="form-row">
-											<div class="col-md-6">
-												<div class="form-label-group">
-													<input type="text" id="firstName" class="form-control"
-														placeholder="First name" required="required"
-														autofocus="autofocus" value="#{peliculaController.pelicula.titulo}"/>
-														<label for="firstName">Título</label>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-label-group">
-													<input type="text" id="lastName" class="form-control"
-														placeholder="Last name" required="required" 
-														value="#{peliculaController.pelicula.descripcion}"/><label
-														for="lastName">Descripcion</label>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-label-group">
-													<input type="text" id="lastName" class="form-control"
-														placeholder="Last name" required="required" 
-														value="#{peliculaController.pelicula.genero}"/><label
-														for="lastName">Genero</label>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-label-group">
-													<input type="text" id="lastName" class="form-control"
-														placeholder="Last name" required="required" 
-														value="#{peliculaController.pelicula.cantidad}"/><label
-														for="lastName">Stock</label>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-label-group">
-													<input type="text" id="lastName" class="form-control"
-														placeholder="Last name" required="required" 
-														value="#{peliculaController.pelicula.valor}"/><label
-														for="lastName">Valor</label>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-label-group">
-												<p:panelGrid>
-												<input type="text" id="lastName" class="form-control"
-														placeholder="Last name" required="required" 
-														value="#{peliculaController.categoria.descripcion}"/><label
-														for="lastName">Descripcion</label>
-												</p:panelGrid>
-													<p:commandButton action="#{peliculaController.addCategoria()}" value="Add Categoria" />
-												</div>
-											</div>
-										</div>
-									</div>
-									<p:commandButton styleClass="btn btn-primary btn-block" 
-									action="#{peliculaController.guardar()}" value="Guardar"/>
-									
-								</h:form>
-				
-				
-					
-					
+								<p:panelGrid columns="6" style="text-align: right;">
+									<p:outputLabel value="Título" />
+									<p:inputText value="#{peliculaController.pelicula.titulo}" />
+									<p:outputLabel value="Género" />
+									<p:selectOneMenu id="pg"
+										value="#{peliculaController.pelicula.genero}"
+										style="width:125px">
+										<f:selectItem itemLabel="Terror" itemValue="Terror" />
+										<f:selectItem itemLabel="Accion" itemValue="Accion" />
+										<f:selectItem itemLabel="Ciencia Ficcion"
+											itemValue="Ciencia Ficcion" />
+										<f:selectItem itemLabel="Comedia" itemValue="Comedia" />
+										<f:selectItem itemLabel="Documentales"
+											itemValue="Documentales" />
+										<f:selectItem itemLabel="Aventura" itemValue="Aventura" />
+										<f:selectItem itemLabel="Drama" itemValue="Drama" />
+										<f:selectItem itemLabel="Sonoras" itemValue="Sonoras" />
+										<f:selectItem itemLabel="Musicales" itemValue="Musicales" />
+										<f:selectItem itemLabel="Horror" itemValue="Horror" />
+										<f:selectItem itemLabel="Romance" itemValue="Romance" />
+										<f:selectItem itemLabel="Animación" itemValue="Animación" />
+										<f:selectItem itemLabel="Historia" itemValue="Historia" />
+									</p:selectOneMenu>
+
+									<p:outputLabel value="Descripción" />
+									<p:inputText value="#{peliculaController.pelicula.descripcion}" />
+
+
+									<p:outputLabel value="Cantidad" />
+									<p:inputText value="#{peliculaController.pelicula.cantidad}" />
+									<p:outputLabel value="Valor" />
+									<p:inputText value="#{peliculaController.pelicula.valor}" />
+
+									<p:outputLabel value="Seleccione" />
+									<p:panelGrid columns="2">
+										<p:selectBooleanCheckbox value="#{peliculaController.digital}"
+											itemLabel="Digital" />
+										<p:selectBooleanCheckbox value="#{peliculaController.fisico}"
+											itemLabel="Físico" />
+									</p:panelGrid>
+								</p:panelGrid>
+
+								<p:commandButton styleClass="btn btn-primary btn-block"
+									action="#{peliculaController.guardar()}" value="Guardar"
+									update="dtLista,frmid" />
+							</p:fieldset>
+						</div>
+
+					</h:form>
+
+					<div class="card-body"></div>
+					<div class="card-footer small text-muted">Updated yesterday
+						at 11:59 PM</div>
 				</div>
 
 
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#">Listado de las Peliculas</a></li>
+					<li class="breadcrumb-item"><a href="#">Listado de las
+							Peliculas</a></li>
 				</ol>
 
 				<!-- Usuarios-->
-				<div class="card mb-3">
-					<div class="card-header">
-						<i class="fas fa-chart-area"></i> Peliculas
+				<h:form id="dtLista">
+					<div class="card mb-3">
+						<div class="card-header">
+							<i class="fas fa-chart-area"></i> Peliculas
+						</div>
+						<p:dataTable var="pel" value="#{peliculaController.plist}">
+							<p:column headerText="Titulo">
+								<p:outputLabel value="#{pel.titulo}" />
+							</p:column>
+							<p:column headerText="Descripcion">
+								<p:outputLabel value="#{pel.descripcion}" />
+							</p:column>
+							<p:column headerText="Genero">
+								<p:outputLabel value="#{pel.genero}" />
+							</p:column>
+							<p:column headerText="Stock">
+								<p:outputLabel value="#{pel.cantidad}" />
+							</p:column>
+							<p:column headerText="Valor">
+								<p:outputLabel value="#{pel.valor}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">Tipo</f:facet>
+								<p:dataTable var="catl" value="#{pel.categoriaList}">
+									<p:column>
+										<p:outputLabel value="#{catl.descripcion}" />
+									</p:column>
+								</p:dataTable>
+
+							</p:column>
+						</p:dataTable>
+
+						<div class="card-body"></div>
+						<div class="card-footer small text-muted"></div>
 					</div>
-					<p:dataTable var="pel" value="#{peliculaController.pelicula}" id="dtLista">
-						<p:column headerText="Titulo">
-							<p:outputLabel value="#{pel.titulo}" />
-						</p:column>
-						<p:column headerText="Descripcion">
-							<p:outputLabel value="#{pel.descripcion}" />
-						</p:column>
-						<p:column headerText="Genero">
-							<p:outputLabel value="#{pel.genero}" />
-						</p:column>
-						<p:column headerText="Stock">
-							<p:outputLabel value="#{pel.cantidad}" />
-						</p:column>
-						<p:column headerText="Valor">
-							<p:outputLabel value="#{pel.valor}" />
-						</p:column>
-						<p:column headerText="Valor">
-							<p:dataTable var="catl" value="#{pel.categoriaList}">
-								<p:column headerText="Codigo">
-									<p:outputLabel value="#{catl.codigoC}" />
-								</p:column>		
-								<p:column headerText="Número">
-									<p:outputLabel value="#{catl.descripcion}" />
-								</p:column>
-							</p:dataTable>
-						</p:column>
-					</p:dataTable>
+				</h:form>
 
-					<div class="card-body"></div>
-					<div class="card-footer small text-muted"></div>
-				</div>
-
-				
 
 			</div>
 			<!-- /.container-fluid -->
@@ -237,25 +227,6 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- Bootstrap core JavaScript-->
-	<script src="start/vendor/jquery/jquery.min.js"></script>
-	<script src="start/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script src="start/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Page level plugin JavaScript-->
-	<script src="start/vendor/chart.js/Chart.min.js"></script>
-	<script src="start/vendor/datatables/jquery.dataTables.js"></script>
-	<script src="start/vendor/datatables/dataTables.bootstrap4.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="start/js/sb-admin.min.js"></script>
-
-	<!-- Demo scripts for this page-->
-	<script src="start/js/demo/datatables-demo.js"></script>
-	<script src="start/js/demo/chart-area-demo.js"></script>
 
 </body>
 

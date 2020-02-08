@@ -1,31 +1,44 @@
 package ec.edu.ups.Controller;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import ec.edu.ups.EN.AdministradorEN;
 import ec.edu.ups.ON.AdministradorON;
+
 @ManagedBean
-@SessionScoped
+@ApplicationScoped
 public class AdministradorController {
 
 	@Inject
 	private AdministradorON aon;
-	private AdministradorEN admi;
+	private AdministradorEN admi = new AdministradorEN();
 	private int id;
 	private String usu;
 	private String clave;
+	private String mensaje;
 
 	@PostConstruct
 	public void init() {
 		admi = new AdministradorEN();
 	}
-
 	public String guardar() {
-		aon.guardar(admi);
-		return "InicioP1";
+		System.out.println(admi);
+		if (!aon.guardar(admi)) {
+			mensaje = "El administrador con ese nombre ya existe, cambie el nombre o el usuario.";
+			return "";
+		} else {
+			admi = new AdministradorEN();
+			return "InicioP1";
+		}
+
+	}
+
+	public void limpiarMensaje() {
+		init();
+		mensaje = "";
 	}
 
 	public String eliminar() {
@@ -37,17 +50,22 @@ public class AdministradorController {
 		aon.update(admi);
 		return null;
 	}
-	
-	public String login() {		
-		System.out.println("llega "+ usu+" - "+ clave);
-		//if(aon.login(usu, clave)!=null) {	
+
+	public String login() {
+		System.out.println("llega " + usu + " - " + clave);
+		admi = aon.login(usu, clave);
+		if (admi != null) {
 			System.out.println("entra");
+			mensaje = "";
 			return "InicioGen.xhtml";
-		//}else {
-			//init();
-			
-		//}
-			
+		} else {
+			mensaje = "El usuario o la contraseña están incorrectos";
+			usu = "";
+			clave = "";
+			init();
+			return null;
+		}
+
 	}
 
 	public String getUsu() {
@@ -81,6 +99,13 @@ public class AdministradorController {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
+
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+
 }

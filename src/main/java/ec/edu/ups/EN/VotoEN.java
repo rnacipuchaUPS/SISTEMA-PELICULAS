@@ -1,56 +1,55 @@
 package ec.edu.ups.EN;
 
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 @Entity
 public class VotoEN {
 	@Id
 	@GeneratedValue
 	private int codigoV;
-	private int puntuacionV;
-	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "codigoV")
-	private UsuarioEN usuario;
-	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "codigoV")
-	private PeliculaEN pelicula;
+	private int si;
+	private int no;
+	private int idPel;
+
 	public int getCodigoV() {
 		return codigoV;
 	}
+
 	public void setCodigoV(int codigoV) {
 		this.codigoV = codigoV;
 	}
-	public int getPuntuacionV() {
-		return puntuacionV;
+
+	public int getSi() {
+		return si;
 	}
-	public void setPuntuacionV(int puntuacionV) {
-		this.puntuacionV = puntuacionV;
+
+	public void setSi(int si) {
+		this.si = si;
 	}
-	public UsuarioEN getUsuario() {
-		return usuario;
+
+	public int getNo() {
+		return no;
 	}
-	public void setUsuario(UsuarioEN usuario) {
-		this.usuario = usuario;
+
+	public void setNo(int no) {
+		this.no = no;
 	}
-	public PeliculaEN getPelicula() {
-		return pelicula;
+
+	public int getIdPel() {
+		return idPel;
 	}
-	public void setPelicula(PeliculaEN pelicula) {
-		this.pelicula = pelicula;
+
+	public void setIdPel(int idPel) {
+		this.idPel = idPel;
 	}
+
 	@Override
 	public String toString() {
-		return "VotoEN [codigoV=" + codigoV + ", puntuacionV=" + puntuacionV + ", usuario=" + usuario + ", pelicula="
-				+ pelicula + "]";
+		return "VotoEN [codigoV=" + codigoV + ", si=" + si + ", no=" + no + ", idPel=" + idPel + "]";
 	}
+
 	
+
 }

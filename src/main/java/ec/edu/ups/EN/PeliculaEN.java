@@ -1,6 +1,7 @@
 package ec.edu.ups.EN;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,23 +10,26 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class PeliculaEN {
 	@Id
-	@GeneratedValue	
+	@GeneratedValue
 	private int codigoP;
 	@NotNull
 	private String titulo;
 	@NotNull
 	private String descripcion;
 	@NotNull
-	private String genero;	
-	private Double valor;	
+	private String genero;
+	private Double valor;
 	private int cantidad;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@Lob()
+	private byte[] imagen;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "codigoP")
 	private List<CategoriaEN> categoriaList;
 
@@ -61,7 +65,6 @@ public class PeliculaEN {
 		this.genero = genero;
 	}
 
-
 	public Double getValor() {
 		return valor;
 	}
@@ -87,17 +90,27 @@ public class PeliculaEN {
 	}
 
 	public void addCategoria(CategoriaEN cat) {
-		if(this.categoriaList==null)
+		if (this.categoriaList == null)
 			this.categoriaList = new ArrayList<>();
 		this.categoriaList.add(cat);
-		
+
 	}
+
+
+	public byte[] getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
+
 
 	@Override
 	public String toString() {
 		return "PeliculaEN [codigoP=" + codigoP + ", titulo=" + titulo + ", descripcion=" + descripcion + ", genero="
-				+ genero + ", valor=" + valor + ", cantidad=" + cantidad + ", categoriaList=" + categoriaList + "]";
+				+ genero + ", valor=" + valor + ", cantidad=" + cantidad + ", imagen=" + Arrays.toString(imagen)
+				+ ", categoriaList=" + categoriaList +  "]";
 	}
-
 
 }

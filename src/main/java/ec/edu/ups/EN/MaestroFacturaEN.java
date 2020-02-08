@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 @Entity
 public class MaestroFacturaEN {
 	
@@ -22,10 +23,11 @@ public class MaestroFacturaEN {
 	private Double precioExtra;
 	private Double descuento;
 	private Double total;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigoM")
-	private List<UsuarioEN> usuarioList;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private UsuarioEN usuario;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "codigoM")
 	private List<DetalleFacturaEN> detalleList;
 	public int getCodigoM() {
@@ -76,23 +78,23 @@ public class MaestroFacturaEN {
 	public void setTotal(Double total) {
 		this.total = total;
 	}
-	public List<UsuarioEN> getUsuarioList() {
-		return usuarioList;
-	}
-	public void setUsuarioList(List<UsuarioEN> usuarioList) {
-		this.usuarioList = usuarioList;
-	}
 	public List<DetalleFacturaEN> getDetalleList() {
 		return detalleList;
 	}
 	public void setDetalleList(List<DetalleFacturaEN> detalleList) {
 		this.detalleList = detalleList;
 	}
+	public UsuarioEN getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(UsuarioEN usuario) {
+		this.usuario = usuario;
+	}
 	@Override
 	public String toString() {
 		return "MaestroFacturaEN [codigoM=" + codigoM + ", fecha=" + fecha + ", direccion=" + direccion + ", subtotal="
 				+ subtotal + ", iva=" + iva + ", precioExtra=" + precioExtra + ", descuento=" + descuento + ", total="
-				+ total + ", usuarioList=" + usuarioList + ", detalleList=" + detalleList + "]";
+				+ total + ", usuario=" + usuario + ", detalleList=" + detalleList + "]";
 	}
 	
 	

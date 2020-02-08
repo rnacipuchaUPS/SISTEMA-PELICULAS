@@ -31,13 +31,9 @@ public class UsuarioDAO {
 	}
 
 	public List<UsuarioEN> listarPersonal() {
-
 		String jqpl = "SELECT p FROM UsuarioEN p";
 		Query query = em.createQuery(jqpl, UsuarioEN.class);
 		List<UsuarioEN> lista = query.getResultList();
-		for (UsuarioEN pel : lista) {
-			pel.getTarjetaList().get(0).getCodigoT();
-		}
 		return lista;
 	}
 }

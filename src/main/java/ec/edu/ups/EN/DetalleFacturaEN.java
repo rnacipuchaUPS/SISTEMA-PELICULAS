@@ -1,15 +1,12 @@
 package ec.edu.ups.EN;
 
-
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 @Entity
 public class DetalleFacturaEN {
 	
@@ -19,9 +16,9 @@ public class DetalleFacturaEN {
 	private int cantidad;
 	private Double subtotal;
 	private String descripcion;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "codigoD")
-	private List<PeliculaEN> pelicula;
+	private PeliculaEN pelicula;
 	public int getCodigoD() {
 		return codigoD;
 	}
@@ -46,10 +43,11 @@ public class DetalleFacturaEN {
 	public void setSubtotal(Double subtotal) {
 		this.subtotal = subtotal;
 	}
-	public List<PeliculaEN> getPelicula() {
+	
+	public PeliculaEN getPelicula() {
 		return pelicula;
 	}
-	public void setPelicula(List<PeliculaEN> pelicula) {
+	public void setPelicula(PeliculaEN pelicula) {
 		this.pelicula = pelicula;
 	}
 	@Override

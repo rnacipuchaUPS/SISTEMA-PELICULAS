@@ -23,7 +23,7 @@ public class PeliculaON {
 		pdao.eliminar(id);
 	}
 	
-	public void update(PeliculaEN u) {
+	public void update(PeliculaEN u) {		
 		pdao.update(u);
 	}
 	

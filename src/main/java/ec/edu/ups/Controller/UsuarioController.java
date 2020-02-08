@@ -1,5 +1,6 @@
 package ec.edu.ups.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -16,10 +17,10 @@ import ec.edu.ups.ON.UsuarioON;
 public class UsuarioController {
 	@Inject
 	private UsuarioON uon;	
-	private UsuarioEN usuario;
+	private UsuarioEN usuario = new UsuarioEN();
 	private int id;
-	private List<UsuarioEN> listUsu;
-	private List<TarjetaEN> tarje;
+	private List<UsuarioEN> listUsu = new ArrayList<UsuarioEN>();
+	private List<TarjetaEN> tarje = new ArrayList<>();
 	private TarjetaEN tarjeta;
 	
 	
@@ -31,6 +32,7 @@ public class UsuarioController {
 	
 	public String guardar() {
 		uon.guardar(usuario);
+		init();
 		return null;
 	}
 	
@@ -48,8 +50,7 @@ public class UsuarioController {
 	}
 	
 	public String addTarjeta() {
-		usuario.addTarjeta(tarjeta);
-		tarjeta = new TarjetaEN();
+		usuario.addTarjeta(new TarjetaEN());
 		return null;
 	}
 	

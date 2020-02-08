@@ -1,5 +1,7 @@
 package ec.edu.DAO;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -12,11 +14,15 @@ public class AdministradorDAO {
 	@Inject
 	private EntityManager em;
 
-	public void guardar(AdministradorEN c) {
-		if (leer(c.getId())!=null) {
-			update(c);
-		}else
+	public boolean guardar(AdministradorEN c) {
+		for (AdministradorEN ae : lista()) {
+			if (ae.getNombre().equals(c.getNombre())||ae.getUsuario().equals(c.getUsuario())) {
+				return false;
+			}
+		}
 		em.persist(c);
+		return true;
+		
 	}
 
 	public void update(AdministradorEN c) {
@@ -31,14 +37,28 @@ public class AdministradorDAO {
 		return em.find(AdministradorEN.class, id);
 	}
 
-	public AdministradorEN login(String usuario, String clave) {
-		AdministradorEN admi = new AdministradorEN();
-		String jpql = "SELECT a FROM AdministradorEN a WHERE usuario LIKE :usu AND clave LIKE :cla";
+	public List<AdministradorEN> lista(){
+		String jpql ="SELECT a FROM AdministradorEN a";
 		Query q = em.createQuery(jpql, AdministradorEN.class);
-		q.setParameter("usu", usuario);
-		q.setParameter("cla", clave);
-		admi = (AdministradorEN) q.getSingleResult();
-		return admi;
+		return q.getResultList();
+	}
+	
+	public AdministradorEN login(String usuario, String clave) {
+		if (lista().size()>0) {
+			for (int i = 0; i < lista().size(); i++) {
+				if (lista().get(i).getUsuario().equals(usuario)&& lista().get(i).getClave().equals(clave)) {
+					AdministradorEN admi = new AdministradorEN();
+					String jpql = "SELECT a FROM AdministradorEN a WHERE a.usuario LIKE :usu AND a.clave LIKE :cla";
+					Query q = em.createQuery(jpql, AdministradorEN.class);
+					q.setParameter("usu", usuario);
+					q.setParameter("cla", clave);
+					admi = (AdministradorEN) q.getSingleResult();
+					return admi;
+				}
+			}
+		}
+		return null;
+		
 	}
 
 }

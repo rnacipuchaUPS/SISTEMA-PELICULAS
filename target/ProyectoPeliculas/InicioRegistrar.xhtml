@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Películas LCh.</title>
+
+	<!-- Custom fonts for this template-->
+	<link href="start/vendor/fontawesome-free/css/all.min.css"
+		rel="stylesheet" type="text/css" />
+
+
+	<link href="start/vendor/datatables/dataTables.bootstrap4.css"
+		rel="stylesheet" />
+
+	<!-- Custom styles for this template-->
+	<link href="start/css/sb-admin.css" rel="stylesheet" />
+	<style type="text/css">
+.value {
+	font-weight: bold;
+}
+
+.ui-carousel {
+	margin-bottom: 20px;
+}
+</style>
+</h:head>
+
+<body id="page-top">
+
+	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+		<a class="card-footer small text-muted" style="font-size: x-large;">Bienvenidos
+			al sistema de Gestion y administrador de Películas</a>
+
+	</nav>
+
+	<div id="wrapper">
+		<div id="content-wrapper">
+
+			<div class="container-fluid">
+
+				<!-- Breadcrumbs-->
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a>Películas</a></li>
+					<li class="breadcrumb-item active">Series</li>
+				</ol>
+
+				<div class="card mb-3">
+					<div class="card-header">
+						<i class="fas fa-chart-area"></i> Registro o Ingreso del
+						Administrador.
+					</div>
+
+					--
+
+					<div class="container">
+						<div class="card card-register mx-auto mt-5">
+							<div class="card-header">Registrar una nueva Cuenta</div>
+							<div class="card-body">
+								<h:form>
+									<div class="form-group">
+										<div class="form-row">
+											<div class="col-md-6">
+												<div class="form-label-group">
+													<input type="text" id="firstName" class="form-control"
+														placeholder="First name" required="required"
+														autofocus="autofocus" value="#{administradorController.admi.nombre}"/>
+														<label for="firstName">Nombre del Administrador</label>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-label-group">
+													<input type="text" id="lastName" class="form-control"
+														placeholder="Last name" required="required" 
+														value="#{administradorController.admi.usuario}"/><label
+														for="lastName">Usuario</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="form-row">
+											<div class="col-md-6">
+												<div class="form-label-group">
+													<input type="password" id="inputPassword"
+														class="form-control" placeholder="Password"
+														required="required" value="#{administradorController.admi.clave}"/><label for="inputPassword">Contraseña</label>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-label-group">
+													<input type="password" id="confirmPassword"
+														class="form-control" placeholder="Confirm password"
+														required="required"/><label for="confirmPassword">Confirmar Contraseña</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<p:commandButton styleClass="btn btn-primary btn-block" 
+									action="#{administradorController.guardar()}" value="Registrar" />
+									
+								</h:form>
+								<div class="text-center">
+									<a class="d-block small mt-3" href="InicioP1.xhtml">Iniciar Sesión</a>
+									<a class="d-block small" href="forgot-password.html">Olvidó su contraseña??</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					--
+
+					<div class="card-body"></div>
+					<div class="card-footer small text-muted">Updated yesterday
+						at 11:59 PM</div>
+				</div>
+
+			</div>
+
+			<!-- Sticky Footer -->
+			<footer class="sticky-footer">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span>Copyright © LCh. Website 2019</span>
+					</div>
+				</div>
+			</footer>
+
+		</div>
+
+	</div>
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+</body>
+
+</html>

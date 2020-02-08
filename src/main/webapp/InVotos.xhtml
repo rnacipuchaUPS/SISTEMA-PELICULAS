@@ -75,148 +75,45 @@
 
 				<!-- Breadcrumbs-->
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#">Películas</a></li>
-				</ol>
-
-				<!-- Poner las peliculas-->
-				<div class="row">
-
-				
-				<h:form>
-									<div class="form-group">
-										<div class="form-row">
-											<div class="col-md-6">
-												<div class="form-label-group">
-													<input type="text" id="firstName" class="form-control"
-														placeholder="First name" required="required"
-														autofocus="autofocus" value="#{peliculaController.pelicula.titulo}"/>
-														<label for="firstName">Título</label>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-label-group">
-													<input type="text" id="lastName" class="form-control"
-														placeholder="Last name" required="required" 
-														value="#{peliculaController.pelicula.descripcion}"/><label
-														for="lastName">Descripcion</label>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-label-group">
-													<input type="text" id="lastName" class="form-control"
-														placeholder="Last name" required="required" 
-														value="#{peliculaController.pelicula.genero}"/><label
-														for="lastName">Genero</label>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-label-group">
-													<input type="text" id="lastName" class="form-control"
-														placeholder="Last name" required="required" 
-														value="#{peliculaController.pelicula.cantidad}"/><label
-														for="lastName">Stock</label>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-label-group">
-													<input type="text" id="lastName" class="form-control"
-														placeholder="Last name" required="required" 
-														value="#{peliculaController.pelicula.valor}"/><label
-														for="lastName">Valor</label>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-label-group">
-													<p:dataTable var="cat" value="#{peliculaController.clist}">
-														<input type="text" id="lastName" class="form-control"
-														placeholder="Last name" required="required" 
-														value="#{cat.descripcion}"/><label
-														for="lastName">Categoria</label>
-													</p:dataTable>
-													<p:commandButton action="#{peliculaController.addCategoria()}" value="Add Categoria" />
-												</div>
-											</div>
-										</div>
-									</div>
-									<p:commandButton styleClass="btn btn-primary btn-block" 
-									action="#{administradorController.guardar()}" value="Registrar" update="dtLista"/>
-									
-								</h:form>
-				
-				
-					
-					
-				</div>
-
-
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#">Listado de las Peliculas</a></li>
-				</ol>
-
-				<!-- Usuarios-->
-				<div class="card mb-3">
-					<div class="card-header">
-						<i class="fas fa-chart-area"></i> Peliculas
-					</div>
-					<p:dataTable var="pel" value="#{peliculaController.pelicula}" id="dtLista">
-						<p:column headerText="Titulo">
-							<p:outputLabel value="#{pel.titulo}" />
-						</p:column>
-						<p:column headerText="Descripcion">
-							<p:outputLabel value="#{pel.descripcion}" />
-						</p:column>
-						<p:column headerText="Genero">
-							<p:outputLabel value="#{pel.genero}" />
-						</p:column>
-						<p:column headerText="Stock">
-							<p:outputLabel value="#{pel.cantidad}" />
-						</p:column>
-						<p:column headerText="Valor">
-							<p:outputLabel value="#{pel.valor}" />
-						</p:column>
-						<p:column headerText="Valor">
-							<p:dataTable var="catl" value="#{pel.categoriaList}">
-								<p:column headerText="Codigo">
-									<p:outputLabel value="#{catl.codigoC}" />
-								</p:column>		
-								<p:column headerText="Número">
-									<p:outputLabel value="#{catl.descripcion}" />
-								</p:column>
-							</p:dataTable>
-						</p:column>
-					</p:dataTable>
-
-					<div class="card-body"></div>
-					<div class="card-footer small text-muted"></div>
-				</div>
-
-				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="#">Votos</a></li>
 				</ol>
 
-				<!-- Votos -->
-				<div class="card mb-3">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Listado de todos
+							los votos</a></li>
+				</ol>
+
+				<!-- Usuarios-->
+				<h:form id="frmUsu">
+					<div class="card mb-3">
 					<div class="card-header">
 						<i class="fas fa-table"></i> Listado de votos
 					</div>
-					votos
-					<div class="card-body"></div>
-					<div class="card-footer small text-muted"></div>
-				</div>
-
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#">Ventas</a></li>
-				</ol>
-				<!-- Ventas -->
-				<div class="card mb-3">
-					<div class="card-header">
-
-						<i class="fas fa-table"></i> Registro de Ventas
+					<div class="card-body">
+						<p:dataTable var="vot" value="#{votosController.listV}">
+							<p:column headerText="N.">
+								<p:outputLabel value="#{vot.codigoV}" />
+							</p:column>
+							<p:column headerText="Si">
+								<p:outputLabel value="#{vot.si}" />
+							</p:column>
+							<p:column headerText="No">
+								<p:outputLabel value="#{vot.no}" />
+							</p:column>
+							<p:column headerText="Titulo">
+								<p:outputLabel value="#{vot.idPel}" />
+							</p:column>						
+						</p:dataTable>
 					</div>
-					ventas
 					<div class="card-body"></div>
 					<div class="card-footer small text-muted"></div>
 				</div>
+				</h:form>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#"></a></li>
+				</ol>
+
+
 
 			</div>
 			<!-- /.container-fluid -->
@@ -225,7 +122,7 @@
 			<footer class="sticky-footer">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright © Your Website 2019</span>
+						<span>Copyright © LCh. Website 2019</span>
 					</div>
 				</div>
 			</footer>
@@ -264,25 +161,5 @@
 		</div>
 	</div>
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="start/vendor/jquery/jquery.min.js"></script>
-	<script src="start/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script src="start/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Page level plugin JavaScript-->
-	<script src="start/vendor/chart.js/Chart.min.js"></script>
-	<script src="start/vendor/datatables/jquery.dataTables.js"></script>
-	<script src="start/vendor/datatables/dataTables.bootstrap4.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="start/js/sb-admin.min.js"></script>
-
-	<!-- Demo scripts for this page-->
-	<script src="start/js/demo/datatables-demo.js"></script>
-	<script src="start/js/demo/chart-area-demo.js"></script>
-
 </body>
-
 </html>

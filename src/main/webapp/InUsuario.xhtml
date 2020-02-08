@@ -79,98 +79,75 @@
 				</ol>
 
 				<!-- Poner las peliculas-->
-				<div class="row">
+				<div class="card mb-3">
+					<div class="card-header">
+						<i class="fas fa-chart-area"></i> Registro o Ingreso de Usuarios.
+					</div>
+					<h:form id="frmid">
+						<div class="card-header">Registro de Usuarios</div>
+						<div class="card-body">
+							<p:fieldset
+								style="font-size: 12px; margin-right: 0.5em; padding-top: 1em;
+                                border: 1px solid lightgray; font-weight: bold; text-align: right; ">
+
+								<p:panelGrid columns="3" style="text-align: right;">
+									<p:outputLabel value="Nombre">
+										<p:inputText value="#{usuarioController.usuario.nombre}" />
+									</p:outputLabel>
+									<p:outputLabel value="Apellido">
+										<p:inputText value="#{usuarioController.usuario.apellido}" />
+									</p:outputLabel>
+									<p:outputLabel value="Género">
+										<p:selectOneRadio id="coG"
+											value="#{usuarioController.usuario.genero}">
+											<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+											<f:selectItem itemLabel="Femenino" itemValue="Femenino" />
+										</p:selectOneRadio>
+									</p:outputLabel>
+									<p:outputLabel value="Usuario">
+										<p:inputText value="#{usuarioController.usuario.usuario}" />
+									</p:outputLabel>
+									<p:outputLabel value="Clave">
+										<p:inputText value="#{usuarioController.usuario.clave}"
+											type="password" />
+									</p:outputLabel>
+									<p:outputLabel value="Repetir Clave">
+										<p:inputText value="#{usuarioController.usuario.clave}"
+											type="password" />
+									</p:outputLabel>
 
 
-					<h:form>
-						<p:panelGrid columns="1">
-							<div class="form-group">
-								<div class="form-row">
-									<div class="col-md-6">
-										<div class="form-label-group">
-											<input type="text" id="firstName" class="form-control"
-												placeholder="First name" required="required"
-												autofocus="autofocus"
-												value="#{usuarioController.usuario.nombre}" /> <label
-												for="firstName">Nombre</label>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-label-group">
-											<input type="text" id="lastName" class="form-control"
-												placeholder="Last name" required="required"
-												value="#{usuarioController.usuario.apellido}" /><label
-												for="lastName">Apellido</label>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-label-group">
-											<input type="text" id="lastName" class="form-control"
-												placeholder="Last name" required="required"
-												value="#{usuarioController.usuario.genero}" /><label
-												for="lastName">Genero</label>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-label-group">
-											<input type="text" id="lastName" class="form-control"
-												placeholder="Last name" required="required"
-												value="#{usuarioController.usuario.usuario}" /><label
-												for="lastName">Usuario</label>
-										</div>
-									</div>
+									<h:outputLabel value="Tarjetas:">
+										<h:dataTable value="#{usuarioController.usuario.tarjetaList}"
+											var="tar">
+											<h:column>
+												<f:facet name="header">Número</f:facet>
+												<h:inputText value="#{tar.numeroTargeta}" />
+											</h:column>
 
-									<div class="form-group">
-										<div class="form-row">
-											<div class="col-md-6">
-												<div class="form-label-group">
-													<input type="password" id="inputPassword"
-														class="form-control" placeholder="Password"
-														required="required"
-														value="#{usuarioController.usuario.clave}" /><label
-														for="inputPassword">Contraseña</label>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-label-group">
-													<input type="password" id="confirmPassword"
-														class="form-control" placeholder="Confirm password"
-														required="required" /><label for="confirmPassword">Confirmar
-														Contraseña</label>
-												</div>
-											</div>
-										</div>
-									</div>
+											<h:column>
+												<f:facet name="header">Clave</f:facet>
+												<p:inputText value="#{tar.clave}" type="password"/>
+											</h:column>
 
-									<div class="col-md-6">
-										<div class="form-label-group">
-											<p:panelGrid>
-												<input type="text" id="lastName" class="form-control"
-													placeholder="Last name" required="required"
-													value="#{usuarioController.tarjeta.numeroTargeta}" />
-												<label for="lastName">Numero de Tarjeta</label>
-												<input type="text" id="lastName" class="form-control"
-													placeholder="Last name" required="required"
-													value="#{usuarioController.tarjeta.clave}" />
-												<label for="lastName">Clave</label>
-											</p:panelGrid>
-											<p:commandButton action="#{usuarioController.addTarjeta()}"
-												value="Add Tarjeta" />
-										</div>
-									</div>
-								</div>
-							</div>
-							<p:commandButton styleClass="btn btn-primary btn-block"
-								action="#{administradorController.guardar()}" value="Registrar"
-								update="dtUsu" />
-						</p:panelGrid>
+										</h:dataTable>
+										<h:commandButton action="#{usuarioController.addTarjeta()}"
+											value="+ Tarjetas" />
+										</h:outputLabel>
+								</p:panelGrid>
+
+								<p:commandButton styleClass="btn btn-primary btn-block"
+									action="#{usuarioController.guardar()}" value="Guardar"
+									update="frmUsu" />
+							</p:fieldset>
+						</div>
+
 					</h:form>
 
-
-
-
+					<div class="card-body"></div>
+					<div class="card-footer small text-muted">Updated yesterday
+						at 11:59 PM</div>
 				</div>
-
 
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="#">Listado de todos
@@ -178,42 +155,43 @@
 				</ol>
 
 				<!-- Usuarios-->
-				<div class="card mb-3">
-					<div class="card-header">
-						<i class="fas fa-chart-area"></i> Usuarios
+				<h:form id="frmUsu">
+					<div class="card mb-3">
+						<div class="card-header">
+							<i class="fas fa-chart-area"></i> Usuarios
+						</div>
+						<p:dataTable var="usu" value="#{usuarioController.listUsu}"
+							id="dtUsu">
+							<p:column headerText="Nombre">
+								<p:outputLabel value="#{usu.nombre}" />
+							</p:column>
+							<p:column headerText="Apellido">
+								<p:outputLabel value="#{usu.apellido}" />
+							</p:column>
+							<p:column headerText="Genero">
+								<p:outputLabel value="#{usu.genero}" />
+							</p:column>
+							<p:column headerText="Usuario">
+								<p:outputLabel value="#{usu.usuario}" />
+							</p:column>
+							<p:column headerText="Tarjetas">
+								<p:dataTable var="tar" value="#{usu.tarjetaList}">
+									<p:column headerText="Número">
+										<p:outputLabel value="#{tar.codigoT}" />
+									</p:column>
+									<p:column headerText="Número">
+										<p:outputLabel value="#{tar.numeroTargeta}" />
+									</p:column>
+								</p:dataTable>
+							</p:column>
+						</p:dataTable>
+
+						<div class="card-body"></div>
+						<div class="card-footer small text-muted"></div>
 					</div>
-					<p:dataTable var="usu" value="#{usuarioController.listUsu}"
-						id="dtUsu">
-						<p:column headerText="Nombre">
-							<p:outputLabel value="#{usu.nombre}" />
-						</p:column>
-						<p:column headerText="Apellido">
-							<p:outputLabel value="#{usu.apellido}" />
-						</p:column>
-						<p:column headerText="Genero">
-							<p:outputLabel value="#{usu.genero}" />
-						</p:column>
-						<p:column headerText="Usuario">
-							<p:outputLabel value="#{usu.usuario}" />
-						</p:column>
-						<p:column headerText="Tarjetas">
-							<p:dataTable var="tar" value="#{usu.tarjetaList}">
-								<p:column headerText="Número">
-									<p:outputLabel value="#{tar.codigoT}" />
-								</p:column>
-								<p:column headerText="Número">
-									<p:outputLabel value="#{tar.numeroTargeta}" />
-								</p:column>
-							</p:dataTable>
-						</p:column>
-					</p:dataTable>
-
-					<div class="card-body"></div>
-					<div class="card-footer small text-muted"></div>
-				</div>
-
+				</h:form>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#">Votos</a></li>
+					<li class="breadcrumb-item"><a href="#"></a></li>
 				</ol>
 
 
@@ -263,25 +241,6 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- Bootstrap core JavaScript-->
-	<script src="start/vendor/jquery/jquery.min.js"></script>
-	<script src="start/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script src="start/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Page level plugin JavaScript-->
-	<script src="start/vendor/chart.js/Chart.min.js"></script>
-	<script src="start/vendor/datatables/jquery.dataTables.js"></script>
-	<script src="start/vendor/datatables/dataTables.bootstrap4.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="start/js/sb-admin.min.js"></script>
-
-	<!-- Demo scripts for this page-->
-	<script src="start/js/demo/datatables-demo.js"></script>
-	<script src="start/js/demo/chart-area-demo.js"></script>
 
 </body>
 

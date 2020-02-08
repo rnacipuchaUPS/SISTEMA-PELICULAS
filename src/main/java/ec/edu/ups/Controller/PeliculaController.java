@@ -1,5 +1,6 @@
 package ec.edu.ups.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -17,20 +18,26 @@ import ec.edu.ups.ON.PeliculaON;
 public class PeliculaController {
 	@Inject
 	private PeliculaON pon;
-	
-	private PeliculaEN pelicula;
-	private CategoriaEN categoria;
+
+	private PeliculaEN pelicula = new PeliculaEN();
+	private CategoriaEN categoria = new CategoriaEN();
 	private int id;
-	private List<PeliculaEN> plist;
-	
-	private List <CategoriaEN>clist;
-	
+	private List<PeliculaEN> plist = new ArrayList<PeliculaEN>();
+	private boolean digital;
+	private boolean fisico;
+	private List<CategoriaEN> clist ;
+	private List<String> generos = new ArrayList<String>();
+
 	@PostConstruct
 	public void init() {
 		pelicula = new PeliculaEN();
-	//	plist = pon.listarPersonal();
-	//	editing = false;
+		categoria = new CategoriaEN();
+		plist = pon.listarPersonal();
+		digital = false;
+		fisico = false;
 	}
+
+	
 	
 	public String keyUptitulo() {
 		System.out.println("llega");
@@ -38,18 +45,28 @@ public class PeliculaController {
 	}
 
 	public String guardar() {
-		System.out.println("el------------------------------ "+ pelicula);
+		CategoriaEN cen1 = new CategoriaEN();
+		CategoriaEN cen2 = new CategoriaEN();
+		if (digital) {
+			cen1.setDescripcion("Digital");
+			pelicula.addCategoria(cen1);
+		}
+		if (fisico) {
+			cen2.setDescripcion("Fisico");
+			pelicula.addCategoria(cen2);
+		}
+		pelicula.addCategoria(cen1);
 		pon.guardar(pelicula);
 		init();
 		return null;
 	}
-	
+
 	public String addCategoria() {
 		pelicula.addCategoria(categoria);
 		categoria = new CategoriaEN();
 		return null;
 	}
-	
+
 	public String eliminar(int id) {
 		pon.eliminar(id);
 		return null;
@@ -60,15 +77,15 @@ public class PeliculaController {
 		return null;
 	}
 
-	public List<PeliculaEN>list(){
+	public List<PeliculaEN> list() {
 		return plist;
-		
+
 	}
-	
+
 	public String regresar() {
 		return "ventana-inicio";
 	}
-	
+
 	public PeliculaEN getPelicula() {
 		return pelicula;
 	}
@@ -101,15 +118,36 @@ public class PeliculaController {
 		this.categoria = categoria;
 	}
 
-
 	public List<CategoriaEN> getClist() {
 		return clist;
 	}
 
-
 	public void setClist(List<CategoriaEN> clist) {
 		this.clist = clist;
 	}
-	
-		
+
+	public boolean isDigital() {
+		return digital;
+	}
+
+	public void setDigital(boolean digital) {
+		this.digital = digital;
+	}
+
+	public boolean isFisico() {
+		return fisico;
+	}
+
+	public void setFisico(boolean fisico) {
+		this.fisico = fisico;
+	}
+
+	public List<String> getGeneros() {
+		return generos;
+	}
+
+	public void setGeneros(List<String> generos) {
+		this.generos = generos;
+	}
+
 }
