@@ -1,22 +1,11 @@
-package ec.edu.ups.EN;
+package ec.edu.ups.WSModelos;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import ec.edu.ups.EN.DetalleFacturaEN;
 
-@Entity
-public class MaestroFacturaEN {
+public class Factura {
 
-	@Id
-	@GeneratedValue
-	private int codigoM;
 	private String fecha;
 	private String direccion;
 	private double subtotal;
@@ -25,17 +14,7 @@ public class MaestroFacturaEN {
 	private double descuento;
 	private double total;
 	private int idUsu;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "codigoM")
 	private List<DetalleFacturaEN> detalleList;
-
-	public int getCodigoM() {
-		return codigoM;
-	}
-
-	public void setCodigoM(int codigoM) {
-		this.codigoM = codigoM;
-	}
 
 	public String getFecha() {
 		return fecha;
@@ -93,14 +72,6 @@ public class MaestroFacturaEN {
 		this.total = total;
 	}
 
-	public List<DetalleFacturaEN> getDetalleList() {
-		return detalleList;
-	}
-
-	public void setDetalleList(List<DetalleFacturaEN> detalleList) {
-		this.detalleList = detalleList;
-	}
-
 	public int getIdUsu() {
 		return idUsu;
 	}
@@ -109,17 +80,19 @@ public class MaestroFacturaEN {
 		this.idUsu = idUsu;
 	}
 
+	public List<DetalleFacturaEN> getDetalleList() {
+		return detalleList;
+	}
+
+	public void setDetalleList(List<DetalleFacturaEN> detalleList) {
+		this.detalleList = detalleList;
+	}
+
 	@Override
 	public String toString() {
-		return "MaestroFacturaEN [codigoM=" + codigoM + ", fecha=" + fecha + ", direccion=" + direccion + ", subtotal="
-				+ subtotal + ", iva=" + iva + ", precioExtra=" + precioExtra + ", descuento=" + descuento + ", total="
-				+ total + ", idUsu=" + idUsu + ", detalleList=" + detalleList + "]";
-	}
-	
-	public void add(DetalleFacturaEN def) {
-		if(detalleList == null)
-			detalleList = new ArrayList<DetalleFacturaEN>();
-		detalleList.add(def);
+		return "Factura [fecha=" + fecha + ", direccion=" + direccion + ", subtotal=" + subtotal + ", iva=" + iva
+				+ ", precioExtra=" + precioExtra + ", descuento=" + descuento + ", total=" + total + ", idUsu=" + idUsu
+				+ ", detalleList=" + detalleList + "]";
 	}
 
 }
